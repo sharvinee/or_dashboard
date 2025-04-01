@@ -320,8 +320,7 @@ with col4:
                 ),
                 # Set light theme for chart
                 paper_bgcolor='rgba(255,255,255,0)',
-                plot_bgcolor='rgba(247,247,247,0.5)',
-                barcornerradius=3
+                plot_bgcolor='rgba(247,247,247,0.5)'
             )
             
             # Update grid and axis colors for better visibility
