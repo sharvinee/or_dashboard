@@ -313,6 +313,7 @@ with col4:
                 legend_title=active_filter,
                 height=400,
                 margin=dict(t=1, b=2, l=5, r=5),
+                barmode='stack',
                 xaxis=dict(
                     type='category',
                     categoryorder='array',
