@@ -150,6 +150,29 @@ with st.sidebar:
 # Title
 st.markdown('<div class="dashboard-title">OR Utilization Dashboard of Q1 2022</div>', unsafe_allow_html=True)
 
+
+# Find the last day in the dataset
+last_day = df['date'].max()
+formatted_last_day = last_day.strftime("%B %d, %Y")
+
+# Find the start of the last day in the dataset
+start_of_day = df[df['date'] == last_day]['or_schedule'].min()
+formatted_start_time = start_of_day.strftime("%I:%M %p")
+
+# Create a container for the date display with some styling
+date_container = st.container()
+with date_container:
+    st.markdown(
+        f"""
+        <div style="text-align: center; padding: 5px; margin-bottom: 15px;">
+            <span style="font-size: 1.2rem; color: #555555; font-weight: 500;">
+                Dashboard as of: <span style="color: #16A085; font-weight: 700;">{formatted_last_day}, {formatted_start_time}</span>
+            </span>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
+
 # KPI Metrics - Top Row
 col1, col2 = st.columns(2)
 
@@ -204,11 +227,11 @@ with col3:
     st.write("")
     st.write("")
     
-    st.markdown("<h5>OR Suite Status at the Start of Last Day</h5>", unsafe_allow_html=True)
+    st.markdown("<h5>OR Suite Status</h5>", unsafe_allow_html=True)
     
-    # Find the last day in the dataset
-    last_day = df['date'].max()
-    start_of_day = df[df['date'] == last_day]['or_schedule'].min()
+    # Find the start of the last day in the dataset
+    # last_day = df['date'].max()
+    # start_of_day = df[df['date'] == last_day]['or_schedule'].min()
     
     # Get unique OR suites
     unique_or = df[df['date'] == last_day]['or_suite'].unique()
