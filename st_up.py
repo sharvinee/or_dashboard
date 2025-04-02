@@ -88,7 +88,7 @@ def load_data():
     for col in date_columns:
         df[col] = pd.to_datetime(df[col])
     
-    # Handle turnover_time column (convert string to timedelta)
+    # Handle turnover_time column 
     if 'turnover_time' in df.columns:
         # If turnover_time is already in the data
         df['turnover_time'] = pd.to_timedelta(df['turnover_time'])
@@ -141,10 +141,8 @@ with st.sidebar:
     if selected_or_suite != "ALL":
         filtered_df = filtered_df[filtered_df.or_suite == int(selected_or_suite)]
     
-    # Define service filtered df
     service_filtered_df = filtered_df.copy()
     
-    # Use a consistent color theme
     selected_color_theme = 'blues'
 
 #########################
@@ -252,7 +250,7 @@ with col4:
         header_col1, header_col2 = st.columns([5, 1])
         
         with header_col1:
-            st.write("")  # Empty space
+            st.write("")  
         
         with header_col2:
             with st.popover("Filter by"):
@@ -277,7 +275,7 @@ with col4:
         if active_filter == "None":
             # Group by week only
             case_volume = filtered_df.groupby(['week']).size().reset_index(name='case_count')
-            case_volume = case_volume.sort_values('week')  # Ensure chronological order
+            case_volume = case_volume.sort_values('week')  
             case_volume['week_label'] = case_volume['week'].apply(lambda w: f"Week {w}")
             
             # Create bar chart
@@ -294,7 +292,7 @@ with col4:
             case_volume = filtered_df.groupby(['week', 'service']).size().reset_index(name='case_count')
             # Create a week label column
             case_volume['week_label'] = case_volume['week'].apply(lambda w: f"Week {w}")
-            case_volume = case_volume.sort_values('week')  # Ensure chronological order
+            case_volume = case_volume.sort_values('week')  
             
             # Create stacked bar chart
             fig = px.bar(
